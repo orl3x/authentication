@@ -1,4 +1,5 @@
 //jshint esversion:6
+require('dotenv').config();
 const express = require('express');
 const ejs = require('ejs');
 const mongoose = require('mongoose');
@@ -17,8 +18,8 @@ const userSchema = new mongoose.Schema({
     password: String
 });
 
-const secret = "Thisismygreatestsecret.";
-userSchema.plugin(encrypt, {secret: secret, encryptedFields: ['password']});
+
+userSchema.plugin(encrypt, {secret: process.env.SECRET, encryptedFields: ['password']});
 
 const User = new mongoose.model("User", userSchema);
 ///////////////////////////////HOME/////////////////////////////////////////////////
@@ -73,6 +74,11 @@ app.route("/login")
         }
         }
     })
+})
+
+///////////////////////////////LOG OUT/////////////////////////////////////////////////
+app.get("/logout", function(req, res){
+    res.render("home")
 })
 
 
