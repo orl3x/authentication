@@ -14,3 +14,9 @@ body {
   color: #fff;
   background-color: #000;
 }
+
+.repeatedUser{
+  color: red;
+  font-weight: 600;
+  text-align: center;
+}
